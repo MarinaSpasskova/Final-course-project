@@ -1,19 +1,17 @@
-from flask import render_template, flash, redirect, url_for
-from app.auth.forms import LoginForm
-from flask_login import current_user, login_user, logout_user
-from flask import request
+from flask import render_template, redirect, url_for, flash, request
 from werkzeug.urls import url_parse
-from app.auth.forms import RegistrationForm
+from flask_login import login_user, logout_user, current_user
 from app import db
-from app.models import User
-from app.auth.forms import ResetPasswordRequestForm
-from app.auth.email import send_password_reset_email
-from app.auth.forms import ResetPasswordForm
 from app.auth import bp
+from app.auth.forms import LoginForm, RegistrationForm, \
+    ResetPasswordRequestForm, ResetPasswordForm
+from app.models import User
+from app.auth.email import send_password_reset_email
 
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
+    print(f"current_user {current_user}")
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
     form = LoginForm()
