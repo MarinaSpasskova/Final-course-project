@@ -1,10 +1,4 @@
-2020-10-04 13:48:14,811 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:46]
-2020-10-04 15:02:17,776 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:49]
-2020-10-04 15:03:48,107 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:49]
-2020-10-04 15:28:32,804 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:49]
-2020-10-04 15:31:38,108 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:49]
-2020-10-10 11:31:00,604 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
-2020-10-10 11:31:10,115 ERROR: Exception on /user/Nelly [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+2020-10-10 11:37:22,904 ERROR: Exception on /user/Nelly [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -20,28 +14,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\routes.py", line 72, in user
-    return render_template('user.html', user=user, posts=posts.items,
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Final project\Final-course-project\app\templates\user.html", line 44, in template
-    <a href="{{ next_url or '#' }}">
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2020-10-10 11:31:24,672 ERROR: Exception on /user/Nelly [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+  File "C:\Final project\Final-course-project\app\routes.py", line 66, in user
+    page, app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'
+2020-10-10 11:40:40,206 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 11:40:52,511 ERROR: Exception on /user/mark [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -57,28 +34,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\routes.py", line 72, in user
-    return render_template('user.html', user=user, posts=posts.items,
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Final project\Final-course-project\app\templates\user.html", line 44, in template
-    <a href="{{ next_url or '#' }}">
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2020-10-10 11:31:33,394 ERROR: Exception on /user/Nelly [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+  File "C:\Final project\Final-course-project\app\routes.py", line 71, in user
+    page, app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'
+2020-10-10 11:43:14,363 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 11:43:17,327 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -94,25 +54,64 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\routes.py", line 72, in user
-    return render_template('user.html', user=user, posts=posts.items,
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Final project\Final-course-project\app\templates\user.html", line 44, in template
-    <a href="{{ next_url or '#' }}">
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2020-10-10 11:37:16,511 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+  File "C:\Final project\Final-course-project\app\routes.py", line 150, in index
+    page, app.config['POST_PER_PAGE'], False)
+KeyError: 'POST_PER_PAGE'
+2020-10-10 11:43:39,325 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 11:43:41,524 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Final project\Final-course-project\app\routes.py", line 150, in index
+    page, app.config['POST_PER_PAGE'], False)
+KeyError: 'POST_PER_PAGE'
+2020-10-10 11:43:43,499 ERROR: Exception on /index [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Final project\Final-course-project\app\routes.py", line 150, in index
+    page, app.config['POST_PER_PAGE'], False)
+KeyError: 'POST_PER_PAGE'
+2020-10-10 11:43:45,265 ERROR: Exception on /index [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Final project\Final-course-project\app\routes.py", line 150, in index
+    page, app.config['POST_PER_PAGE'], False)
+KeyError: 'POST_PER_PAGE'

@@ -1,4 +1,4 @@
-2020-10-10 11:43:47,298 ERROR: Exception on /index [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+2020-10-10 11:44:35,362 ERROR: Exception on /index [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -17,65 +17,8 @@ Traceback (most recent call last):
   File "C:\Final project\Final-course-project\app\routes.py", line 150, in index
     page, app.config['POST_PER_PAGE'], False)
 KeyError: 'POST_PER_PAGE'
-2020-10-10 11:43:48,598 ERROR: Exception on /explore [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\routes.py", line 164, in explore
-    page, app.config['POST_PER_PAGE'], False)
-KeyError: 'POST_PER_PAGE'
-2020-10-10 11:43:49,347 ERROR: Exception on /explore [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\routes.py", line 164, in explore
-    page, app.config['POST_PER_PAGE'], False)
-KeyError: 'POST_PER_PAGE'
-2020-10-10 11:44:27,327 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
-2020-10-10 11:44:28,598 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\routes.py", line 150, in index
-    page, app.config['POST_PER_PAGE'], False)
-KeyError: 'POST_PER_PAGE'
-2020-10-10 11:44:32,069 ERROR: Exception on /user/Mark_Beltriski [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+2020-10-10 11:46:08,382 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 11:46:15,595 ERROR: Exception on /user/mark [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -112,3 +55,71 @@ Traceback (most recent call last):
   File "C:\Final project\Final-course-project\app\templates\user.html", line 44, in template
     <a href="{{ next_url or '#' }}">
 jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+2020-10-10 11:48:51,044 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 11:50:34,358 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 11:51:28,784 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 11:52:30,158 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:51]
+2020-10-10 16:05:14,652 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:59]
+2020-10-10 16:05:16,007 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1926, in dispatch_request
+    self.raise_routing_exception(req)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1908, in raise_routing_exception
+    raise request.routing_exception
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\ctx.py", line 350, in match_request
+    result = self.url_adapter.match(return_rule=True)
+  File "c:\final project\final-course-project\venv\lib\site-packages\werkzeug\routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1816, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1744, in handle_http_exception
+    return handler(e)
+  File "C:\Final project\Final-course-project\app\errors\handlers.py", line 6, in not_found
+    return render_template('errors/404.html'), 404
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Final project\Final-course-project\app\templates\errors\404.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Final project\Final-course-project\app\templates\base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 4, in block "doc"
+    {%- block html %}
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 20, in block "html"
+    {% block body -%}
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_bootstrap\templates\bootstrap\base.html", line 21, in block "body"
+    {% block navbar %}
+  File "C:\Final project\Final-course-project\app\templates\base.html", line 17, in block "navbar"
+    <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a>
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "c:\final project\final-course-project\venv\lib\site-packages\werkzeug\routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'index'. Did you mean 'auth.login' instead?
+2020-10-10 16:06:49,981 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:59]

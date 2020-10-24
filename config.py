@@ -17,3 +17,5 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['nerra@yandex.ru']
     POST_PER_PAGE = 20
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+
