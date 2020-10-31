@@ -130,3 +130,6 @@ dmypy.json
 
 # Idea project folder
 .idea/
+
+#Application logs
+/logs
