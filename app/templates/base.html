@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-    {% if title %}{{ title }} - Microblog News and moods{% else %}Welcome to Microblog News and moods{% endif %}
+    {% if title %}{{ title }} - News and moods{% else %}Welcome to News and moods{% endif %}
 {% endblock %}
 
 {% block navbar %}
@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('main.index') }}">Microblog News and moods</a>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">News and moods</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -55,4 +55,48 @@
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    <script>
+        $(function() {
+            let timer = null;
+            let xhr = null;
+            $('.user_popup').hover(
+                function(event) {
+                    let elem = $(event.currentTarget);
+                    timer = setTimeout(function() {
+                        timer = null;
+                        xhr = $.ajax('/user/' + elem.first().text().trim() + '/popup').done(
+                        function(data) {
+                            xhr = null;
+                            elem.popover({
+                                trigger: 'manual',
+                                html: true,
+                                animation: false,
+                                container: elem,
+                                content: data
+                        }).popover('show');
+                        flask_moment_render_all();
+                        }
+                        );
+                    }, 1000);
+                },
+                function(event) {
+                    let elem = $(event.currentTarget);
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    } else if (xhr) {
+                        xhr.abort();
+                        xhr = null;
+                    } else {
+                        elem.popover('destroy')
+                    }
+                }
+            )
+        });
+    </script>
 {% endblock %}

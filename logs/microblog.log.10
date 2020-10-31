@@ -1,4 +1,4 @@
-2020-10-30 20:33:41,570 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+2020-10-30 20:06:02,630 ERROR: Exception on /index [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -47,10 +47,10 @@ Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
   File "C:\Final project\Final-course-project\app\templates\_post.html", line 17, in template
-    {{ post.body }}
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.
-2020-10-30 20:35:51,182 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-30 20:35:54,313 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+    username=user_link, when=moment(post.timestamp).fromNow() }}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2020-10-30 20:07:24,756 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+2020-10-30 20:07:29,898 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -99,7 +99,27 @@ Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
   File "C:\Final project\Final-course-project\app\templates\_post.html", line 17, in template
-    {{ post.body }}
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.
-2020-10-30 20:36:58,573 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-30 20:47:35,099 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+    username=user_link, when=moment(post.timestamp).fromNow() }}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2020-10-30 20:08:10,524 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+2020-10-30 20:08:24,083 ERROR: Exception on /user/Friedrich Nietzsche [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Final project\Final-course-project\app\main\routes.py", line 62, in user
+    page, current_app.config.config['POST_PER_PAGE'], False)
+AttributeError: 'Config' object has no attribute 'config'
+2020-10-30 20:15:48,046 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+2020-10-30 20:18:40,519 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]

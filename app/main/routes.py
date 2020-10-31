@@ -59,7 +59,7 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get('page', 1, type=int)
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(
-        page, current_app.config.config['POST_PER_PAGE'], False)
+        page, current_app.config['POST_PER_PAGE'], False)
     next_url = url_for('main.user', username=user.username, page=posts.next_num) \
         if posts.has_next else None
     prev_url = url_for('main.user', username=user.username, page=posts.prev_num) \
@@ -147,3 +147,11 @@ def search():
         if page > 1 else None
     return render_template('search.html', title='Search', posts=posts,
                            next_url=next_url, prev_url=prev_url)
+
+
+@bp.route('/user/<username>/popup')
+@login_required
+def user_popup(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    form = EmptyForm()
+    return render_template('user_popup.html', user=user, form=form)

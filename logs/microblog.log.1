@@ -1,17 +1,4 @@
-2020-10-11 20:55:42,588 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:72]
-2020-10-11 20:57:39,602 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:72]
-2020-10-11 20:59:38,937 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:72]
-2020-10-24 20:22:44,785 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:73]
-2020-10-24 20:27:28,552 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 20:34:24,561 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 20:37:16,750 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 20:39:12,155 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 20:55:24,597 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 20:58:35,397 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 21:00:58,787 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 21:06:35,051 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 21:11:36,650 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-24 21:12:04,087 ERROR: Exception on /search [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+2020-10-31 11:02:23,820 ERROR: Exception on /user/Friedrich Nietzsche/popup [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -27,8 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\main\routes.py", line 149, in search
-    return render_template('search.html', title='Search', posts=posts,
+  File "C:\Final project\Final-course-project\app\main\routes.py", line 157, in user_popup
+    return render_template('user_popup.html', user=user, form=form)
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 138, in render_template
     ctx.app.jinja_env.get_or_select_template(template_name_or_list),
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
@@ -45,10 +32,10 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "C:\Final project\Final-course-project\app\templates\search.html", line 10, in template
-    <li class="previous{%if not prev_url %} disabled{% enif %}">
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'enif'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
-2020-10-24 21:12:23,089 ERROR: Exception on /search [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+  File "C:\Final project\Final-course-project\app\templates\user_popup.html", line 12, in template
+    count followers {{count=user.followers.count()) }},
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2020-10-31 11:03:10,231 ERROR: Exception on /user/Friedrich Nietzsche/popup [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -64,8 +51,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Final project\Final-course-project\app\main\routes.py", line 149, in search
-    return render_template('search.html', title='Search', posts=posts,
+  File "C:\Final project\Final-course-project\app\main\routes.py", line 157, in user_popup
+    return render_template('user_popup.html', user=user, form=form)
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 138, in render_template
     ctx.app.jinja_env.get_or_select_template(template_name_or_list),
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
@@ -82,7 +69,44 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "C:\Final project\Final-course-project\app\templates\search.html", line 10, in template
-    <li class="previous{%if not prev_url %} disabled{% enif %}">
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'enif'. Jinja was looking for the following tags: 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
-2020-10-24 21:18:51,856 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+  File "C:\Final project\Final-course-project\app\templates\user_popup.html", line 12, in template
+    count followers {{count=user.followers.count()) }},
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2020-10-31 11:10:28,039 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+2020-10-31 11:10:36,492 ERROR: Exception on /user/Friedrich Nietzsche/popup [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Final project\Final-course-project\app\main\routes.py", line 157, in user_popup
+    return render_template('user_popup.html', user=user, form=form)
+  File "c:\final project\final-course-project\venv\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\loaders.py", line 127, in load
+    code = environment.compile(source, name, filename)
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Final project\Final-course-project\app\templates\user_popup.html", line 19, in template
+    {{ form.submit(value='Follow'), class_='btn btn-default btn-sm' }}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='

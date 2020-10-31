@@ -1,4 +1,4 @@
-2020-10-30 20:33:41,570 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+2020-10-30 20:18:41,758 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -47,10 +47,10 @@ Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
   File "C:\Final project\Final-course-project\app\templates\_post.html", line 17, in template
-    {{ post.body }}
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.
-2020-10-30 20:35:51,182 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-30 20:35:54,313 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
+    username=user_link, when=moment(post.timestamp).fromNow() }}
+jinja2.exceptions.TemplateSyntaxError: expected token ')', got '='
+2020-10-30 20:21:22,174 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+2020-10-30 20:21:24,061 ERROR: Exception on / [GET] [in c:\final project\final-course-project\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -99,7 +99,6 @@ Traceback (most recent call last):
   File "c:\final project\final-course-project\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
   File "C:\Final project\Final-course-project\app\templates\_post.html", line 17, in template
-    {{ post.body }}
-jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was looking for the following tags: 'endset'. The innermost block that needs to be closed is 'set'.
-2020-10-30 20:36:58,573 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
-2020-10-30 20:47:35,099 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
+    username=user_link, when=moment(post.timestamp).fromNow()' }}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2020-10-30 20:21:55,527 INFO: Microblog startup [in C:\Final project\Final-course-project\app\__init__.py:76]
