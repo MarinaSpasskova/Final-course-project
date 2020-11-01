@@ -1,0 +1,53 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+h1 {
+    color: #7c4dff;
+}
+
+.card-panel {
+    border-radius: 15px;
+    border-color: #7c4dff;
+    color: #7c4dff;
+    font-size: 18px;
+    font-weight: 350;
+}
+
+.card-title {
+    color: #7c4dff;
+    font-size: 21px;
+    font-weight: 350;
+}
+
+.input-field:focus + label{
+    background-color: white;
+    color: #7c4dff;
+    box-shadow: 0 1px 0 0 #7c4dff !important;
+    border-bottom: 1px !important;
+    border-bottom-color: #7c4dff;
+    font-weight: 350;
+}
+
+.Username, .Password {
+    color: #7c4dff;
+    font-size: 18px;
+    font-weight: 350;
+}
+
+.btnSignIn {
+    color: #7c4dff;
+    border-color: white;
+    border-radius: 10px;
+    font-size: 21px;
+}
+
+.Remember-me {
+    color: #7c4dff;
+    font-size: 18px;
+    border-color: #7c4dff;
+    font-weight: 350;
+}
+
+.par {
+    color: #7c4dff;
+    font-size: 15px;
+}
