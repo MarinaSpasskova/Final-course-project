@@ -18,6 +18,8 @@ export const Register = () => {
                                     type="text"
                                     name="Username"
                                 />
+                            </div>
+                            <div>
                                 <label htmlFor="Username">Username</label>
                                 <input
                                     placeholder="Email"
@@ -27,7 +29,6 @@ export const Register = () => {
                                     />
                                     <label htmlFor="Email">Email</label>
                             </div>
-
                             <div className="input-field">
                                 <input
                                     placeholder="Password"
@@ -37,6 +38,8 @@ export const Register = () => {
                                     className="white"
                                 />
                                 <label htmlFor="password">Password</label>
+                            </div>
+                            <div>
                                 <input
                                     placeholder="Repeat password"
                                     id="repeat password"

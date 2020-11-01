@@ -6,11 +6,15 @@ import { ResetPassword } from "./pages/ResetPassword";
 import { Home } from "./pages/Home";
 import { User } from "./pages/User";
 import { Profile } from "./pages/Profile";
+import { Explore } from "./pages/Explore";
 
 export const useRoutes = (isAuthenticated) => {
     if (isAuthenticated) {
         return (
             <Switch>
+                <Route path="/explore" exact>
+                    <Explore />
+                </Route>
                 <Route path="/home" exact>
                     <Home />
                 </Route>

@@ -26,12 +26,16 @@ export const Navbar = () => {
                         <NavLink to="/explore">Explore</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/login">Login</NavLink>
-                    </li>
-                    <li>
                         <NavLink to="/profile">Profile</NavLink>
                     </li>
-                    <label className="label-icon" htmlFor="search"><i className="material-icons">Search</i></label>
+                    <li>
+                        <form>
+                            <div className="search-wrapper">
+                                <input id="search" placeholder="search"/>
+                                    <i className="label-icon">search</i>
+                            </div>
+                        </form>
+                    </li>
                     <li>
                         <a href="/" onClick={logoutHandler}>
                             Logout

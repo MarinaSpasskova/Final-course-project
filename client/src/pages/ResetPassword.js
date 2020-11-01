@@ -21,7 +21,7 @@ export const ResetPassword = () => {
                             </div>
                             <div className="card-action">
                                 <button
-                                className="btnSignI"
+                                className="Submit"
                                 style={{ marginRight: 5 }}
                                 >
                                 Register

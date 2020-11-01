@@ -77,7 +77,7 @@ export const Auth = () => {
                     </div>
                     <div className="card-action">
                         <button
-                            className="btnSignIn"
+                            className="Submit"
                             style={{ marginRight: 5 }}
                             disabled={loading}
                             onClick={loginHandler}

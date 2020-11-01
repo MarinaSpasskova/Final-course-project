@@ -5,19 +5,19 @@ export const User = () => {
     return (
         <ul className="collection">
             <li className="collection-item avatar">
-                <img src="images/yuna.jpg" alt="" className="circle"/>
+                <img src="collection-item-avatar" alt="" className="circle"/>
                     <span className="Username">Username</span>
                     <p>About me</p>
                     <p>Last seen on</p>
                     <p>followers,following.</p>
                     <button
-                        className="btnSignIn"
+                        className="Submit"
                         style={{ marginRight: 5 }}
                     >
                         Follow
                     </button>
                     <button
-                        className="btnSignIn"
+                        className="Submit"
                         style={{ marginRight: 5 }}
                     >
                         Unfollow
