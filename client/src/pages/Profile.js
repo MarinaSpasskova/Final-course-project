@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 import {useHttp} from "../hooks/http.hooks";
+import {AuthContext} from "../context/AuthContext";
 
 
 export const Profile = () => {
+    const {token, userId} = useContext(AuthContext)
     const [form, setForm] = useState(
         { username: "", about_me: "" });
     const {loading, request, error, clearError} = useHttp()
@@ -12,10 +14,24 @@ export const Profile = () => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
-    const loginHandler = async () => {
+    const fetchProfileData = useCallback(async () => {
         try {
-            const data = await request("/api/edit_profile", "POST", { ...form });
-            console.log("logged in")
+            const fetched = await request(`/api/users/${userId}`, "GET", null, {
+                Authorization: `Bearer ${token}`,
+            });
+            setForm(fetched);
+        } catch (e) {
+        }
+    }, [token, request, userId]);
+
+    useEffect(() => {
+        fetchProfileData();
+    }, [fetchProfileData]);
+
+    const editProfileHandler = async () => {
+        try {
+            const data = await request(`/api/users/${userId}`, "PUT", { ...form });
+            console.log("User profile was edited")
         } catch (e) {}
     };
 
@@ -52,7 +68,7 @@ export const Profile = () => {
                                 className="Submit"
                                 style={{ marginRight: 5 }}
                                 disabled={loading}
-                                onClick={loginHandler}
+                                onClick={editProfileHandler}
                             >
                                 Submit
                             </button>

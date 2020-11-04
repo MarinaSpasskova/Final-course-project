@@ -5,13 +5,13 @@ from app.api.auth import basic_auth, token_auth
 
 
 @bp.route('/auth/login', methods=['POST'])
-@bp.route('/tokens', methods=['POST'])
 @basic_auth.login_required
 def get_token():
     token = g.current_user.get_token()
     db.session.commit()
     return {'token': token,
-            'userId': g.current_user.id}
+            'userId': g.current_user.id,
+            'username': g.current_user.username}
 
 
 @bp.route('/tokens', methods=['DELETE'])

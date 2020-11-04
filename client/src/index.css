@@ -37,10 +37,15 @@ h3 {
     font-weight: 350;
 }
 
+.Register {
+    margin-bottom: 5px;
+}
+
 .Submit {
     color: #7c4dff;
-    border-color: white;
-    border-radius: 10px;
+    background-color: white;
+    border-color: inherit;
+    border-radius: 7px;
     font-size: 21px;
 }
 
@@ -61,8 +66,19 @@ h3 {
     height: 50px;
 }
 
+.collection {
+    border-left: inherit;
+    border-right: inherit;
+    border-top: inherit;
+    margin-top: 25px;
+}
+
+ul.collection {
+    width: 707px;
+}
+
 .li.collection-item.avatar {
-    width: 580px;
+    width: 707px;
     height: 84px;
     font-size: 16px;
     padding: 10px 20px 10px 72px;
@@ -77,4 +93,17 @@ h3 {
 .search-wrapper:focus {
     color: white;
     font-size: 15px;
+    border-bottom-color: white;
 }
+
+
+.brand-logo {
+    font-size: 43px;
+    margin-left: 30px;
+}
+
+.Username {
+    font-size: 27px;
+    font-weight: bold;
+}
+

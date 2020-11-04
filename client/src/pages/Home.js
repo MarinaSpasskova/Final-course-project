@@ -3,13 +3,13 @@ import {useState, useCallback, useEffect, useContext} from "react";
 import {useHttp} from "../hooks/http.hooks";
 import {AuthContext} from "../context/AuthContext";
 import {Loader} from "../components/Loader";
-import {Post} from "../pages/Post";
 import {PostList} from "../components/PostList";
 
 export const Home = () => {
-    const [posts, setPosts] = useState([])
+
     const {loading, request} = useHttp()
-    const {token} = useContext(AuthContext)
+    const {token, username} = useContext(AuthContext)
+    const [posts, setPosts] = useState([])
 
     const fetchPosts = useCallback(async () => {
         try {
@@ -33,7 +33,10 @@ export const Home = () => {
     return (
         <div>
         <ul className="collection">
-            <h3>Hi user!</h3>
+                <li className="collection-item avatar">
+                    <img src="https://www.gravatar.com/avatar/0612aef53fa25771052a026fc174cd5a?d=identicon&amp;s=200" alt="" className="circle"/>
+                    <span className="Username">Hi, {username}!</span>
+                </li>
             <p className="par">It`s your home page! There are you can see only your own posts</p>
             <div>
                 <div className="row">

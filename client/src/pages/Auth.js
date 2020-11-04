@@ -3,6 +3,8 @@ import {useHttp} from "../hooks/http.hooks";
 import { useState, useCallback } from "react";
 import {AuthContext} from "../context/AuthContext";
 import {useMessage} from "../hooks/message.hook";
+import { Register } from "./Register";
+import { ResetPassword } from "./ResetPassword";
 
 export const Auth = () => {
     const auth = useContext(AuthContext);
@@ -35,7 +37,8 @@ export const Auth = () => {
     const loginHandler = async () => {
         try {
             const data = await request("/api/auth/login", "POST", { ...form });
-            auth.login(data.token, data.userId);
+            auth.login(data.token, data.userId, data.username);
+            console.log(auth.username)
             console.log("logged in")
         } catch (e) {}
     };
@@ -67,7 +70,6 @@ export const Auth = () => {
                                     id="password"
                                     type="password"
                                     name="password"
-                                    className="white"
                                     value={form.password}
                                     onChange={changeHandler}
                                 />
@@ -85,10 +87,10 @@ export const Auth = () => {
                             Sign in
                         </button>
                         <p className="par">
-                            Are you a new user? <a  href="Register.js">Click here!</a>
+                            Are you a new user? <a  href="/register">Click here!</a>
                         </p>
                         <p className="par">
-                            Have you forgotten a password? <a  href="ResetPassword.js">Click here!</a>
+                            Have you forgotten a password? <a  href="/resetPassword">Click here!</a>
                         </p>
                         <label>
                             <input type="checkbox" />

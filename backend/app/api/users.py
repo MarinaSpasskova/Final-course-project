@@ -3,6 +3,7 @@ from app import db
 from app.api import bp
 from app.api.errors import bad_request
 from app.models import User, Post
+from app.auth.email import send_password_reset_email
 
 
 @bp.route('/users/<int:id>', methods=['GET'])
@@ -65,6 +66,7 @@ def get_user_followed_posts(id):
 
 
 @bp.route('/users', methods=['POST'])
+@bp.route('/auth/register', methods=['POST'])
 def create_user():
     data = request.get_json() or {}
     if 'username' not in data or 'email' not in data or 'password' not in data:
@@ -97,3 +99,12 @@ def update_user(id):
     db.session.commit()
     return user.to_dict()
 
+
+@bp.route('/auth/reset_password', methods=['POST'])
+def reset_password():
+    data = request.get_json() or {}
+    if 'email' in data:
+        user = User.query.filter_by(email=data['email']).first()
+        if user:
+            send_password_reset_email(user)
+    return {}

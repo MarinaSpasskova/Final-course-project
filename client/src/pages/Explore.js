@@ -6,9 +6,10 @@ import {Loader} from "../components/Loader";
 import {PostList} from "../components/PostList";
 
 export const Explore = () => {
+
     const [posts, setPosts] = useState([])
     const {loading, request} = useHttp()
-    const {token} = useContext(AuthContext)
+    const {token, username} = useContext(AuthContext)
 
     const fetchPosts = useCallback(async () => {
         try {
@@ -30,7 +31,7 @@ export const Explore = () => {
 
     return (
         <div>
-            <h3>Hi, user!</h3>
+            <h3>Hi, {username}!</h3>
             <p className="par">There are you can see all posts</p>
             <>{!loading && <PostList posts={posts}/>}</>
         </div>

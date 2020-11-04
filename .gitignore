@@ -156,5 +156,4 @@ dmypy.json
 .idea/
 
 #Application logs
-/logs
-
+logs/

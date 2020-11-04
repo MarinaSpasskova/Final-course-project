@@ -8,7 +8,9 @@ import { User } from "./pages/User";
 import { Profile } from "./pages/Profile";
 import { Explore } from "./pages/Explore";
 
+
 export const useRoutes = (isAuthenticated) => {
+    console.log("isAuthenticated is", isAuthenticated)
     if (isAuthenticated) {
         return (
             <Switch>
@@ -28,10 +30,17 @@ export const useRoutes = (isAuthenticated) => {
             </Switch>
         );
     }
+    console.log("Redirect to /")
     return (
         <Switch>
             <Route path="/" exact>
                 <Auth />
+            </Route>
+            <Route path="/register" exact>
+                <Register />
+            </Route>
+            <Route path="/resetPassword" exact>
+                <ResetPassword />
             </Route>
             <Redirect to="/" />
         </Switch>
