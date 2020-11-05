@@ -48,8 +48,6 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
-    token = db.Column(db.String(32), index=True, unique=True)
-    token_expiration = db.Column(db.DateTime)
 
     followed = db.relationship(
         'User', secondary=followers,
