@@ -15,6 +15,8 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+        g.search_form = SearchForm()
+    g.locale = str(get_locale())
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -104,6 +106,7 @@ def follow(username):
     else:
         return redirect(url_for('main.index'))
 
+
 @bp.route('/unfollow/<username>', methods=['POST'])
 @login_required
 def unfollow(username):
@@ -124,15 +127,6 @@ def unfollow(username):
         return redirect(url_for('main.index'))
 
 
-@bp.before_request
-def before_request():
-    if current_user.is_authenticated:
-        current_user.last_seen = datetime.utcnow()
-        db.session.commit()
-        g.search_form = SearchForm()
-    g.locale = str(get_locale())
-
-
 @bp.route('/search')
 @login_required
 def search():
@@ -143,7 +137,7 @@ def search():
                                current_app.config['POST_PER_PAGE'])
     next_url = url_for('main.search', q=g.search_form.q.data, page=page + 1) \
         if total > page * current_app.config['POST_PER_PAGE'] else None
-    prev_url = url_for('main.search',  q=g.search_form.q.data, page=page - 1) \
+    prev_url = url_for('main.search', q=g.search_form.q.data, page=page - 1) \
         if page > 1 else None
     return render_template('search.html', title='Search', posts=posts,
                            next_url=next_url, prev_url=prev_url)
