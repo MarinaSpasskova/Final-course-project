@@ -22,6 +22,13 @@ export const ResetPassword = () => {
         setForm({...form, [event.target.name]: event.target.value} )
     }
 
+    const backHandler = async () => {
+        try {
+            history.push("/");
+        } catch (e) {
+        }
+    }
+
 
     useEffect(() => {
         window.M.updateTextFields();
@@ -46,16 +53,26 @@ export const ResetPassword = () => {
                                 />
                                 <label htmlFor="Email">Email</label>
                             </div>
-                            <div className="card-action">
+                            <span className="card-action">
                                 <button
-                                className="Submit"
+                                className="Submit btn waves-effect waves-light deep-purple accent-2"
                                 style={{ marginRight: 5 }}
                                 disabled={loading}
                                 onClick={resetPasswordHandler}
                                 >
                                 Request password reset
                                 </button>
-                            </div>
+                            </span>
+                            <span className="card-action">
+                                <button
+                                    className="Submit btn waves-effect waves-light deep-purple accent-2"
+                                    style={{ marginRight: 5 }}
+                                    disabled={loading}
+                                    onClick={backHandler}
+                                >
+                                    Back to Sign in
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>

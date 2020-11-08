@@ -1,10 +1,8 @@
 import React, {useContext, useEffect} from "react";
 import {useHttp} from "../hooks/http.hooks";
-import { useState, useCallback } from "react";
+import { useState} from "react";
 import {AuthContext} from "../context/AuthContext";
 import {useMessage} from "../hooks/message.hook";
-import { Register } from "./Register";
-import { ResetPassword } from "./ResetPassword";
 
 export const Auth = () => {
     const auth = useContext(AuthContext);
@@ -18,7 +16,7 @@ export const Auth = () => {
     };
 
     useEffect(() => {
-        console.log("AuthPage error:");
+        console.log("AuthPage error:", error);
         message(error);
         clearError();
     }, [error, message, clearError])
@@ -27,18 +25,10 @@ export const Auth = () => {
         window.M.updateTextFields();
     }, []);
 
-    /*const registerHandler = async () => {
-        try {
-            const data = await request("/api/auth/register", "POST", { ...form });
-            message(data.message);
-        } catch (e) {}
-    };*/
-
     const loginHandler = async () => {
         try {
             const data = await request("/api/auth/login", "POST", { ...form });
             auth.login(data.token, data.userId, data.username);
-            console.log(auth.username)
             console.log("logged in")
         } catch (e) {}
     };
@@ -79,7 +69,7 @@ export const Auth = () => {
                     </div>
                     <div className="card-action">
                         <button
-                            className="Submit"
+                            className="Submit btn waves-effect waves-light deep-purple accent-2"
                             style={{ marginRight: 5 }}
                             disabled={loading}
                             onClick={loginHandler}

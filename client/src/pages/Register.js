@@ -20,6 +20,12 @@ export const Register = () => {
         try {
             const data = await request("api/auth/register", "POST", {...form});
             message(data.message);
+        } catch (e) {
+        }
+    }
+
+    const backHandler = async () => {
+        try {
             history.push("/");
         } catch (e) {
         }
@@ -90,16 +96,26 @@ export const Register = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card-action">
+                    <span className="card-action">
                         <button
-                            className="Submit"
+                            className="Submit btn waves-effect waves-light deep-purple accent-2"
                             style={{ marginRight: 5 }}
                             disabled={loading}
                             onClick={registerHandler}
                         >
                             Register
                         </button>
-                    </div>
+                        <span className="card-action">
+                                <button
+                                    className="Submit btn waves-effect waves-light deep-purple accent-2"
+                                    style={{ marginRight: 5 }}
+                                    disabled={loading}
+                                    onClick={backHandler}
+                                >
+                                    Back to Sign in
+                                </button>
+                        </span>
+                    </span>
                 </div>
             </div>
         </div>

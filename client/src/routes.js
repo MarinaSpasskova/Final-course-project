@@ -17,10 +17,19 @@ export const useRoutes = (isAuthenticated) => {
                 <Route path="/explore" exact>
                     <Explore />
                 </Route>
+                <Route path="/explore/:page">
+                    <Explore />
+                </Route>
                 <Route path="/home" exact>
                     <Home />
                 </Route>
-                <Route path="/user" exact>
+                <Route path="/home/:page" exact>
+                    <Home />
+                </Route>
+                <Route path="/user/:id" exact>
+                    <User />
+                </Route>
+                <Route path="/user/:id/:page">
                     <User />
                 </Route>
                 <Route path="/profile" exact>

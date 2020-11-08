@@ -1,7 +1,8 @@
-from flask import request
+from flask import request, jsonify
 from app.api import bp
 from app.models import User
 from app.api.errors import error_response
+from app.auth.email import send_password_reset_email
 
 
 @bp.route('/auth/login', methods=['POST'])
@@ -21,3 +22,15 @@ def login():
     return {'token': token,
             'userId': user.id,
             'username': user.username}
+
+
+@bp.route('/auth/reset_password', methods=['POST'])
+def reset_password():
+    data = request.get_json() or {}
+    if 'email' in data:
+        user = User.query.filter_by(email=data['email']).first()
+        if user:
+            send_password_reset_email(user)
+    data = jsonify()
+    data.status_code = 202
+    return data

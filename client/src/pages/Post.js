@@ -7,7 +7,7 @@ export const Post = () => {
             <div className="card-panel grey lighten-5 z-depth-1">
                 <div className="row valign-wrapper">
                     <div className="col s2">
-                        <img src="images/yuna.jpg" alt=""
+                        <img src="images.jpg" alt=""
                              className="circle responsive-img" />
                     </div>
                     <div className="col s10">

@@ -1,33 +1,26 @@
-import React, {useContext} from "react";
-import { Post } from "../pages/Post";
-import { User } from "../pages/User";
-import {AuthContext} from "../context/AuthContext";
+import React from "react";
+import {Link} from 'react-router-dom'
 import Moment from 'moment'
 
 
-export const PostList = ( { posts } ) => {
-    console.log("postList 1")
-    console.log(posts.items);
-    console.log(posts);
-    console.log(typeof(posts))
-
+export const PostList = ({posts, author = null, avatar = null}) => {
     if (!posts.items) {
         return <p>Sorry, there is no posts yet!</p>;
     }
-    console.log("postList 2")
     return (
         <ul className="collection">
             {posts.items.map((post, index) => {
+                let post_author = author || post.author
+                let post_avatar = avatar || post_author.avatar
                 return (
-                    <li className="collection-item avatar">
-                        <img src="https://www.gravatar.com/avatar/b85953170a930ef7511b8d7de3de58ef?d=identicon&amp;s=100" alt="" className="circle"></img>
+                    <li className="collection-item avatar" key={post.id}>
+                        <img src={post_avatar} alt="avatar" className="circle"></img>
                         <span>
-                            User with id
-                            <a  href="/user"> {post.user_id} </a>
-                                at  {Moment(post.timestamp).format('DD MMMM YYYY, h:mm')}
+                            <Link to={`/user/${post_author.id}`}> {post_author.username} </Link>
+                                at {Moment(post.timestamp).format('DD MMMM YYYY, H:mm')}
                         </span>
-                    <p> said: {post.body}
-                    </p>
+                        <p> said: {post.body}
+                        </p>
                         <p> {post.userId}</p>
                     </li>
                 );

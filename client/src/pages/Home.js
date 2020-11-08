@@ -4,62 +4,82 @@ import {useHttp} from "../hooks/http.hooks";
 import {AuthContext} from "../context/AuthContext";
 import {Loader} from "../components/Loader";
 import {PostList} from "../components/PostList";
+import {PaginationBar} from "../components/PaginationBar";
+import {useParams} from "react-router-dom";
 
 export const Home = () => {
 
     const {loading, request} = useHttp()
-    const {token, username} = useContext(AuthContext)
+    const {token, username, userId} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
+    const [user, setUser] = useState([])
+    const post_page = useParams().page;
 
     const fetchPosts = useCallback(async () => {
         try {
-            const fetched = await request(`/api/posts`, "GET", null, {
+            console.log("Home", post_page)
+            let page = post_page || 1
+            /*const fetched = await request(`/api/users/${userId}/followed_posts`, "GET", null, {
+                Authorization: `Bearer ${token}`,*/
+            const fetched = await request(`/api/users/${userId}/followed_posts?page=${page}`, "GET", null, {
                 Authorization: `Bearer ${token}`,
             });
             setPosts(fetched);
         } catch (e) {
         }
-    }, [token, request]);
+    }, [token, request, post_page]);
+
+    const fetchUser = useCallback(async () => {
+        try {
+            const fetched = await request(`/api/users/${userId}`, "GET", null, {
+                Authorization: `Bearer ${token}`,
+            });
+            console.log("User: ", fetched)
+            setUser(fetched);
+        } catch (e) {
+        }
+    }, [token, request, userId]);
 
     useEffect(() => {
         fetchPosts();
-    }, [fetchPosts]);
+        fetchUser();
+    }, [fetchPosts, fetchUser]);
 
     if (loading) {
         return <Loader/>;
     }
-    console.log("home.page")
-    console.log("loading is ", loading)
+    console.log("home.page is loading:", loading)
+    console.log("User: ", user)
     return (
         <div>
-        <ul className="collection">
-                <li className="collection-item avatar">
-                    <img src="https://www.gravatar.com/avatar/0612aef53fa25771052a026fc174cd5a?d=identicon&amp;s=200" alt="" className="circle"/>
+            <ul className="collection">
+                {!loading && user._links && <li className="collection-item avatar">
+                    <img src={user._links.avatar} alt="avatar" className="circle"/>
                     <span className="Username">Hi, {username}!</span>
-                </li>
-            <p className="par">It`s your home page! There are you can see only your own posts</p>
-            <div>
-                <div className="row">
-                    <form className="col s12">
-                        <div className="row">
-                            <div className="input-field col s6">
-                                <textarea id="icon_prefix2" className="materialize-textarea"></textarea>
-                                <label htmlFor="icon_prefix2">Write something</label>
-                                <button
-                                    className="Submit"
-                                    style={{marginRight: 5}}
-                                >
-                                    Submit
-                                </button>
+                </li>}
+                <p className="par">It`s your home page! You can see only your own posts and followed posts here.</p>
+                <div>
+                    <div className="row">
+                        <form className="col s12">
+                            <div className="row">
+                                <div className="input-field col s6">
+                                    <textarea id="icon_prefix2" className="materialize-textarea"  maxLength="140"></textarea>
+                                    <label htmlFor="icon_prefix2">Write something</label>
+                                    <button
+                                        className="Submit btn waves-effect waves-light deep-purple accent-2"
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div className="row">
+                        <>{!loading && <PostList posts={posts}/>}</>
+                        <>{!loading && <PaginationBar page={post_page || 1} total_pages={posts._meta?posts._meta.total_pages: 0} link_to={"/home"}/>}</>
+                    </div>
                 </div>
-                <div className="row">
-                    <>{!loading && <PostList posts={posts}/>}</>
-                </div>
-            </div>
-        </ul>
+            </ul>
         </div>
     )
 }

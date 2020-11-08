@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import React, {useContext} from "react";
+import {NavLink, useHistory} from "react-router-dom";
+import {AuthContext} from "../context/AuthContext";
 
 export const Navbar = () => {
     const history = useHistory();
@@ -32,7 +32,7 @@ export const Navbar = () => {
                         <form>
                             <div className="search-wrapper">
                                 <input id="search" placeholder="search"/>
-                                    <i className="label-icon">search</i>
+                                <i className="label-icon">search</i>
                             </div>
                         </form>
                     </li>

@@ -1,6 +1,5 @@
-import base64
-import os
-from datetime import datetime, timedelta
+from datetime import datetime
+from sqlalchemy.orm import joinedload
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from flask import current_app, url_for
@@ -12,16 +11,19 @@ from app.search import add_to_index, remove_from_index, query_index
 
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-                     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
-                     )
+                     db.Column('followed_id', db.Integer, db.ForeignKey('user.id')))
 
 
 class PaginatedAPIMixin(object):
     @staticmethod
-    def to_collection_dict(query, page, per_page, endpoint, **kwargs):
+    def _to_collection_items(items):
+        return [item.to_dict() for item in items]
+
+    @classmethod
+    def to_collection_dict(cls, query, page, per_page, endpoint, **kwargs):
         resources = query.paginate(page, per_page, False)
         data = {
-            'items': [item.to_dict() for item in resources.items],
+            'items': cls._to_collection_items(resources.items),
             '_meta': {
                 'page': page,
                 'per_page': per_page,
@@ -74,7 +76,9 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
             self.followed.append(user)
 
     def unfollow(self, user):
+        print(f"Unfollow {user} isfollowing? {self.is_following(user)}")
         if self.is_following(user):
+            print(f"Unfollowing {user}")
             self.followed.remove(user)
 
     def is_following(self, user):
@@ -83,10 +87,10 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
 
     def followed_posts(self):
         followed = Post.query.join(
-            followers, (followers.c.followed_id == self.id)).filter(
+            followers, (followers.c.followed_id == Post.user_id)).filter(
             followers.c.follower_id == self.id)
         own = Post.query.filter_by(user_id=self.id)
-        return followed.union(own).order_by(Post.timestamp.desc())
+        return followed.union(own).options(joinedload(Post.author)).order_by(Post.timestamp.desc())
 
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
@@ -138,13 +142,17 @@ class User(PaginatedAPIMixin, UserMixin, db.Model):
             data['email'] = self.email
         return data
 
+    def to_light_dict(self):
+        return {'id': self.id,
+                'username': self.username,
+                'avatar': self.avatar(128)}
+
     def from_dict(self, data, new_user=False):
         for field in ['username', 'email', 'about_me']:
             if field in data:
                 setattr(self, field, data[field])
         if new_user and 'password' in data:
             self.set_password(data['password'])
-
 
 
 class SearchableMixin(object):
@@ -216,6 +224,16 @@ class Post(PaginatedAPIMixin, SearchableMixin, db.Model):
         for field in ['user_id', 'body']:
             if field in data:
                 setattr(self, field, data[field])
+
+    def to_dict_pagination(self):
+        data = self.to_dict()
+        data['author'] = self.author.to_light_dict()
+        return data
+
+    @staticmethod
+    def _to_collection_items(items):
+        return [item.to_dict_pagination() for item in items]
+
 
 @login.user_loader
 def load_user(id):

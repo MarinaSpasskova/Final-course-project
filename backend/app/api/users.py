@@ -1,38 +1,67 @@
-from flask import request, url_for, jsonify, current_app
+from flask import request, url_for, jsonify, current_app, g
 from app import db
 from app.api import bp
+from app.api.token_auth import token_auth
 from app.api.errors import bad_request
 from app.models import User, Post
-from app.auth.email import send_password_reset_email
 
 
 @bp.route('/users/<int:id>', methods=['GET'])
+@token_auth.login_required
 def get_user(id):
-    return User.query.get_or_404(id).to_dict()
+    user = User.query.get_or_404(id)
+    is_followed = False
+    if user.id == g.current_user.id:
+        is_followed = None
+    elif g.current_user.is_following(user):
+        is_followed = True
+    user = user.to_dict()
+    user['is_followed'] = is_followed
+    return user
 
 
 @bp.route('/users', methods=['GET'])
+@token_auth.login_required
 def get_users():
     page = request.args.get('page', 1, type=int)
     per_page = min(request.args.get('per_page', 10, type=int), 100)
     data = User.to_collection_dict(User.query, page, per_page, 'api.get_users')
     return data
 
+@bp.route("/users/<int:id>/follow", methods=['PUT'])
+@token_auth.login_required
+def follow_user(id):
+    user = User.query.get_or_404(id)
+    if user.id == g.current_user.id:
+        return bad_request("You cannot follow yourself.")
+    g.current_user.follow(user)
+    db.session.commit()
+    return jsonify()
+
+@bp.route("/users/<int:id>/unfollow", methods=['PUT'])
+@token_auth.login_required
+def unfollow_user(id):
+    user = User.query.get_or_404(id)
+    if user.id == g.current_user.id:
+        return bad_request("You cannot unfollow yourself.")
+    g.current_user.unfollow(user)
+    db.session.commit()
+    return jsonify()
+
 
 @bp.route('/users/<int:id>/followers', methods=['GET'])
+@token_auth.login_required
 def get_followers(id):
     user = User.query.get_or_404(id)
-    print(f"Get followers for user {id}")
     page = request.args.get('page', 1, type=int)
-    print(f"Get followers for user {id} page : {page}")
     per_page = min(request.args.get('per_page', 10, type=int), 100)
-    print(f"Get followers for user {id} page : {page} per page: {per_page}")
     data = User.to_collection_dict(user.followers, page, per_page,
                                    'api.get_followers', id=id)
     return data
 
 
 @bp.route('/users/<int:id>/followed', methods=['GET'])
+@token_auth.login_required
 def get_followed(id):
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
@@ -46,8 +75,7 @@ def get_followed(id):
 def get_user_posts(id):
     user = User.query.get_or_404(id)
     page = request.args.get('page', 1, type=int)
-    per_page = min(request.args.get('per_page', 10, type=int), 100)
-
+    per_page = min(request.args.get('per_page', current_app.config['POST_PER_PAGE'], type=int), 50)
     data = Post.to_collection_dict(user.posts.order_by(Post.timestamp.desc()), page, per_page,
                                    'api.get_user_posts', id=id)
     return data
@@ -56,9 +84,8 @@ def get_user_posts(id):
 @bp.route('/users/<int:id>/followed_posts', methods=['GET'])
 def get_user_followed_posts(id):
     user = User.query.get_or_404(id)
-    print(user)
     page = request.args.get('page', 1, type=int)
-    per_page = min(request.args.get('per_page', current_app.config['POST_PER_PAGE'], type=int), 100)
+    per_page = min(request.args.get('per_page', current_app.config['POST_PER_PAGE'], type=int), 50)
 
     data = Post.to_collection_dict(user.followed_posts(), page, per_page, 'api.get_user_followed_posts',
                                    id=id)
@@ -86,8 +113,11 @@ def create_user():
 
 
 @bp.route('/users/<int:id>', methods=['PUT'])
+@token_auth.login_required
 def update_user(id):
     user = User.query.get_or_404(id)
+    if g.current_user != user:
+        return bad_request("You aren't allowed to modify other users")
     data = request.get_json() or {}
     if 'username' in data and data['username'] != user.username and \
             User.query.filter_by(username=data['username']).first():
@@ -98,13 +128,3 @@ def update_user(id):
     user.from_dict(data, new_user=False)
     db.session.commit()
     return user.to_dict()
-
-
-@bp.route('/auth/reset_password', methods=['POST'])
-def reset_password():
-    data = request.get_json() or {}
-    if 'email' in data:
-        user = User.query.filter_by(email=data['email']).first()
-        if user:
-            send_password_reset_email(user)
-    return {}

@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
-import {NavLink} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {useHttp} from "../hooks/http.hooks";
 import {AuthContext} from "../context/AuthContext";
 
@@ -8,7 +8,8 @@ export const Profile = () => {
     const {token, userId} = useContext(AuthContext)
     const [form, setForm] = useState(
         { username: "", about_me: "" });
-    const {loading, request, error, clearError} = useHttp()
+    const {loading, request, error, clearError} = useHttp();
+    const history = useHistory();
 
     const changeHandler = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -32,9 +33,9 @@ export const Profile = () => {
         try {
             const data = await request(`/api/users/${userId}`, "PUT", { ...form });
             console.log("User profile was edited")
+            history.push("/home");
         } catch (e) {}
     };
-
 
     return (
         <div className="row">
@@ -65,12 +66,11 @@ export const Profile = () => {
                                 </div>
                             </div>
                             <button
-                                className="Submit"
-                                style={{ marginRight: 5 }}
+                                className="Submit btn waves-effect waves-light deep-purple accent-2"
                                 disabled={loading}
                                 onClick={editProfileHandler}
                             >
-                                Submit
+                                Edit
                             </button>
                         </div>
                     </div>
