@@ -1,0 +1,122 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+h1 {
+    color: #7c4dff;
+}
+
+h3 {
+    color: #7c4dff;
+}
+
+.card-panel {
+    border-radius: 15px;
+    border-color: #7c4dff;
+    color: #7c4dff;
+    font-size: 18px;
+    font-weight: 350;
+}
+
+.card-title {
+    color: #7c4dff;
+    font-size: 21px;
+    font-weight: 350;
+}
+
+.input-field:focus + label{
+    background-color: white;
+    color: #7c4dff;
+    box-shadow: 0 1px 0 0 white !important;
+    border-bottom: 1px !important;
+    border-bottom-color: #7c4dff;
+    font-weight: 350;
+}
+
+.Username, .Password {
+    color: #7c4dff;
+    font-size: 18px;
+    font-weight: 350;
+}
+
+.Register {
+    margin-bottom: 5px;
+}
+
+.Submit {
+    border-radius: 7px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.Remember-me {
+    color: #7c4dff;
+    font-size: 18px;
+    border-color: #7c4dff;
+    font-weight: 350;
+}
+
+.par {
+    color: #7c4dff;
+    font-size: 15px;
+}
+
+.img.circle {
+    width: 50px;
+    height: 50px;
+}
+
+.collection {
+    border-left: inherit;
+    border-right: inherit;
+    border-top: inherit;
+    margin-top: 25px;
+}
+
+ul.collection {
+    width: 707px;
+}
+
+.li.collection-item.avatar {
+    width: auto;
+    height: 84px;
+    font-size: 16px;
+    padding: 10px 20px 10px 72px;
+    border-color: #7c4dff;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+}
+
+.search-wrapper:focus {
+    color: white;
+    font-size: 15px;
+    border-bottom-color: white;
+}
+
+
+.brand-logo {
+    font-size: 43px;
+    margin-left: 30px;
+}
+
+.Username {
+    font-size: 32px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+.userPar {
+    font-size: 17px;
+    font-weight: 400;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.card-panel {
+    width: auto;
+}
+
+
+
+
