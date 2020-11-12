@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {NavLink, Redirect, Switch, useHistory} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 import {useHttp} from "../hooks/http.hooks";
 import {useMessage} from "../hooks/message.hook";
 
@@ -7,7 +7,7 @@ import {useMessage} from "../hooks/message.hook";
 export const Register = () => {
     const history = useHistory();
     const message = useMessage();
-    const {loading, request, error, clearError} = useHttp();
+    const {loading, request, clearError} = useHttp();
     const [form, setForm] = useState({
         username: "", email: "", password: "", repeatPassword: ""
     });
@@ -18,6 +18,7 @@ export const Register = () => {
 
     const registerHandler = async () => {
         try {
+
             const data = await request("api/auth/register", "POST", {...form});
             message(data.message);
         } catch (e) {

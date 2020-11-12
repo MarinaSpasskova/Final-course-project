@@ -13,14 +13,29 @@ export const Home = () => {
     const {token, username, userId} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
     const [user, setUser] = useState([])
+    const [form, setForm] = useState({body: ""});
     const post_page = useParams().page;
+
+    const changeHandler = (event) => {
+        console.log("Events", event.target.name, event.target.value)
+        setForm({...form, [event.target.name]: event.target.value});
+    };
+
+    const submitNewPost = async () => {
+        try {
+            console.log("Home. Submit new post");
+            await request(`api/posts`, "POST", {...form}, {
+                Authorization: `Bearer ${token}`,
+            })
+            form.body = "";
+            fetchPosts();
+        }catch (e){}
+    }
 
     const fetchPosts = useCallback(async () => {
         try {
-            console.log("Home", post_page)
+            console.log("Home. fetch posts")
             let page = post_page || 1
-            /*const fetched = await request(`/api/users/${userId}/followed_posts`, "GET", null, {
-                Authorization: `Bearer ${token}`,*/
             const fetched = await request(`/api/users/${userId}/followed_posts?page=${page}`, "GET", null, {
                 Authorization: `Bearer ${token}`,
             });
@@ -49,7 +64,6 @@ export const Home = () => {
         return <Loader/>;
     }
     console.log("home.page is loading:", loading)
-    console.log("User: ", user)
     return (
         <div>
             <ul className="collection">
@@ -63,10 +77,16 @@ export const Home = () => {
                         <form className="col s12">
                             <div className="row">
                                 <div className="input-field col s6">
-                                    <textarea id="icon_prefix2" className="materialize-textarea"  maxLength="140"></textarea>
+                                    <textarea id="icon_prefix2" className="materialize-textarea" maxLength="140"
+                                              name="body"
+                                              value={form.body}
+                                              onChange={changeHandler}>
+                                    </textarea>
                                     <label htmlFor="icon_prefix2">Write something</label>
                                     <button
                                         className="Submit btn waves-effect waves-light deep-purple accent-2"
+                                        disabled={loading}
+                                        onClick={submitNewPost}
                                     >
                                         Submit
                                     </button>
@@ -76,7 +96,9 @@ export const Home = () => {
                     </div>
                     <div className="row">
                         <>{!loading && <PostList posts={posts}/>}</>
-                        <>{!loading && <PaginationBar page={post_page || 1} total_pages={posts._meta?posts._meta.total_pages: 0} link_to={"/home"}/>}</>
+                        <>{!loading &&
+                        <PaginationBar page={post_page || 1} total_pages={posts._meta ? posts._meta.total_pages : 0}
+                                       link_to={"/home"}/>}</>
                     </div>
                 </div>
             </ul>

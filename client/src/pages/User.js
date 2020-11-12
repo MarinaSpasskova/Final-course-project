@@ -29,7 +29,7 @@ export const User = () => {
             }
         } catch (e) {
         }
-    }, [token, request, pageUserId, setIsYourPage, setUser]);
+    }, [token, request, pageUserId, setIsYourPage, setUser, userId]);
 
     useEffect(() => {
         fetchUser();
