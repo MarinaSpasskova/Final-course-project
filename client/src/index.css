@@ -14,12 +14,14 @@ h3 {
     color: #7c4dff;
     font-size: 18px;
     font-weight: 350;
+    line-height: 1.6em;
 }
 
 .card-title {
     color: #7c4dff;
     font-size: 21px;
     font-weight: 350;
+    line-height: 1.6em;
 }
 
 .input-field:focus + label{
@@ -57,6 +59,7 @@ h3 {
 .par {
     color: #7c4dff;
     font-size: 15px;
+    line-height: 1.6em;
 }
 
 .img.circle {
@@ -115,6 +118,7 @@ ul.collection {
 
 .card-panel {
     width: auto;
+    line-height: 1.6em;
 }
 
 

@@ -31,7 +31,9 @@ export const Profile = () => {
 
     const editProfileHandler = async () => {
         try {
-            const data = await request(`/api/users/${userId}`, "PUT", { ...form });
+            const data = await request(`/api/users/${userId}`, "PUT", { ...form }, {
+                Authorization: `Bearer ${token}`,
+            });
             console.log("User profile was edited")
             history.push("/home");
         } catch (e) {}

@@ -42,7 +42,7 @@ export const Home = () => {
             setPosts(fetched);
         } catch (e) {
         }
-    }, [token, request, post_page]);
+    }, [token, request, post_page, userId]);
 
     const fetchUser = useCallback(async () => {
         try {
